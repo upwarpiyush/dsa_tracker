@@ -4,7 +4,7 @@ import { apiConnector } from "../apiconnector"
 import { topicEndpoints } from "../apis"
 import { setLoading } from "../../slices/profileSlice"
 
-const { GET_ALL_TOPICS_API, GET_TOPIC_QUESTIONS_API, ADD_TOPIC_API } = topicEndpoints
+const { GET_ALL_TOPICS_API, ADD_TOPIC_API, GET_QUESTIONS_API, DELETE_TOPIC_API } = topicEndpoints
 
 
 export async function getAllTopics() {
@@ -31,7 +31,7 @@ export async function getQuestions(topicID) {
   let result = []
   try {
     const response = await apiConnector("GET", 
-    `http://localhost:4000/api/v1/topic/getTopicQuestions/${topicID}`,);
+    GET_QUESTIONS_API + `/${topicID}`,);
 
     // console.log("Get Questions RESPONSE ... ", response);
 
@@ -80,7 +80,7 @@ export function deleteTopic(topicName, token) {
     try{
       const response = await apiConnector(
           "DELETE",
-          `http://localhost:4000/api/v1/topic/deleteTopic/${topicName}`,
+          DELETE_TOPIC_API + `/${topicName}`,
           null,
           {
               Authorisation: `Bearer ${token}`,

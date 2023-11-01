@@ -14,6 +14,8 @@ export const topicEndpoints = {
     GET_ALL_TOPICS_API: BASE_URL + "/topic/getAllTopics",
     GET_TOPIC_QUESTIONS_API: BASE_URL + "/topic/getTopicQuestions",
     ADD_TOPIC_API: BASE_URL + "/topic/addTopic",
+    GET_QUESTIONS_API: BASE_URL + "/topic/getTopicQuestions",
+    DELETE_TOPIC_API: BASE_URL + "/topic/deleteTopic"
   }
 
     // QUESTION ENDPOINTS
