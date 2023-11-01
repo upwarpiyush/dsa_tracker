@@ -19,6 +19,7 @@ export const topicEndpoints = {
     // QUESTION ENDPOINTS
 export const questionEndpoints = {
   ADD_QUESTION_API: BASE_URL + "/question/addQuestion",
+  DELETE_QUESTION_API : BASE_URL + "/question/removeQuestion"
 }
 
     // PROFILE ENDPOINTS
@@ -27,4 +28,5 @@ export const profileEndpoints = {
   GET_DONE_TOPIC_QUESTIONS_API: BASE_URL + "/done/getDoneTopicQuestions",
   SET_QUESTION_DONE_API: BASE_URL + "/done/setDone",
   ERASE_QUESTION_DONE_API: BASE_URL + "/done/eraseDone",
+  GET_DONE_QUESTIONS_API: BASE_URL + "/done/getDoneTopicQuestions"
 }

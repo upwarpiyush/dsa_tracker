@@ -4,7 +4,7 @@ import { apiConnector } from "../apiconnector"
 import { questionEndpoints } from "../apis"
 import { setLoading } from "../../slices/profileSlice"
 
-const { ADD_QUESTION_API } = questionEndpoints
+const { ADD_QUESTION_API, DELETE_QUESTION_API } = questionEndpoints
 
 
 export function addNewQuestion(topicName, title, url, token) {
@@ -40,7 +40,7 @@ export function addNewQuestion(topicName, title, url, token) {
       try{
         const response = await apiConnector(
             "DELETE",
-            `http://localhost:4000/api/v1/question/removeQuestion/${topicName}/${title}`,
+            DELETE_QUESTION_API + `/${topicName}/${title}`,
             null,
             {
                 Authorisation: `Bearer ${token}`,

@@ -4,7 +4,7 @@ import { apiConnector } from "../apiconnector"
 import { profileEndpoints } from "../apis"
 import { setLoading } from "../../slices/profileSlice"
 
-const { GET_ALL_DONE_API, SET_QUESTION_DONE_API, ERASE_QUESTION_DONE_API } = profileEndpoints
+const { GET_ALL_DONE_API, SET_QUESTION_DONE_API, ERASE_QUESTION_DONE_API, GET_DONE_QUESTIONS_API } = profileEndpoints
 
 
 export async function getAllDoneTopics(token) {
@@ -41,7 +41,7 @@ export async function getDoneQuestions(token, topicID) {
   try {
     const response = await apiConnector(
       "GET",
-      `http://localhost:4000/api/v1/done/getDoneTopicQuestions/${topicID}`,
+      GET_DONE_QUESTIONS_API+`/${topicID}`,
       null,
       {
           Authorisation: `Bearer ${token}`,
