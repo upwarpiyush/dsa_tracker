@@ -57,9 +57,10 @@ export const Landing = () => {
               {"content-type": "application/json"},
             );
 
-              if (!res.ok) {
-                throw new Error(`Subscription failed: ${res.statusText}`);
-              }
+            if (!res.ok) {
+              // throw new Error(`Subscription failed: ${res.statusText}`);
+              console.log("subscription failed", res.statusText);
+            }
 
               console.log("Subscription successful:", await res.json());
             } else {
