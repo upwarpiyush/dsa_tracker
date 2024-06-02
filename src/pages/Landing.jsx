@@ -46,7 +46,7 @@ export const Landing = () => {
 
             if (newPermission === "granted") {
               // Permission granted, subscribe to push notifications
-              const applicationServerKey = urlBase64ToUint8Array(process.env.REACT_APP_VAPID_PUBLIC_KEY);
+              const applicationServerKey = urlBase64ToUint8Array(process.env.VAPID_PUBLIC_KEY);
               const subscription = await register.pushManager.subscribe({
                 userVisibleOnly: true,
                 applicationServerKey
