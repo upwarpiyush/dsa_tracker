@@ -24,7 +24,7 @@ exports.resetPasswordToken = async (req, res) => {
 			},
 			{ new: true }
 		);
-		console.log("DETAILS", updatedDetails);
+		// console.log("DETAILS", updatedDetails);
 
 		const url = `https://dsatracker-frontend.vercel.app/update-password/${token}`;
 

@@ -1,21 +1,22 @@
 {
   "files": {
-    "main.css": "/static/css/main.45e79fb8.css",
-    "main.js": "/static/js/main.7359358e.js",
+    "main.css": "/static/css/main.73c5a0c1.css",
+    "main.js": "/static/js/main.3804a935.js",
     "static/media/frame.png": "/static/media/frame.3a238e5f26d676376e1d.png",
+    "static/media/bell.png": "/static/media/bell.62d4c99adad5904a4af5.png",
     "static/media/questions_background.svg": "/static/media/questions_background.4047f16cb75b2698a953eaf1d37f026c.svg",
     "static/media/topicwise_background.svg": "/static/media/topicwise_background.54ea15eb03e03bbd04b248dcf214d210.svg",
     "static/media/login_bg.svg": "/static/media/login_bg.a72a8e8425c4fefcb177d18c62233511.svg",
     "static/media/percentage_background.svg": "/static/media/percentage_background.31175bb32c2cd6fbc9e80d65d400acaa.svg",
     "static/media/signup_bg.svg": "/static/media/signup_bg.a18e427df467f6374cff35e7816312c0.svg",
-    "static/media/landing_background.svg": "/static/media/landing_background.73ebed8abde9aa064901.svg",
+    "static/media/landing_background.svg": "/static/media/landing_background.51f62203532e53fb06f3.svg",
     "static/media/purple-blob-background.svg": "/static/media/purple-blob-background.5de0bd485ad5e1d0801b.svg",
     "index.html": "/index.html",
-    "main.45e79fb8.css.map": "/static/css/main.45e79fb8.css.map",
-    "main.7359358e.js.map": "/static/js/main.7359358e.js.map"
+    "main.73c5a0c1.css.map": "/static/css/main.73c5a0c1.css.map",
+    "main.3804a935.js.map": "/static/js/main.3804a935.js.map"
   },
   "entrypoints": [
-    "static/css/main.45e79fb8.css",
-    "static/js/main.7359358e.js"
+    "static/css/main.73c5a0c1.css",
+    "static/js/main.3804a935.js"
   ]
 }

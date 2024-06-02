@@ -6,7 +6,7 @@ exports.addQuestion = async (req, res)=>{
     try{
         const {topicName, title, url} = req.body;
 
-        console.log("I am here.............", req.body);
+        // ("I am here.............", req.body);
 
         if(!topicName | !title  | !url) {
             return res.status(403).send({
@@ -95,7 +95,7 @@ exports.removeQuestion = async (req, res)=>{
 
         const existingQuestion = await Question.findOne({ title });
 
-        // console.log("Hi its me exsistingQuestion..............................",existingQuestion);
+        // ("Hi its me exsistingQuestion..............................",existingQuestion);
 
         if(!existingQuestion)
         {
@@ -117,7 +117,7 @@ exports.removeQuestion = async (req, res)=>{
             });
             user.save()
                 .then(() => {
-                console.log(`Removed question ID from user with ID: ${user._id}`);
+                (`Removed question ID from user with ID: ${user._id}`);
                 })
                 .catch(err => {
                 console.error(err);

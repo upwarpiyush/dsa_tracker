@@ -61,11 +61,17 @@ exports.setDone = async (req, res)=>{
             }
         })
         .then(updatedUser => {
-            console.log(updatedUser);
+            (updatedUser);
         })
         .catch(err => {
             console.error(err);
         });
+
+        await User.findByIdAndUpdate(
+            userDetails._id,
+            { solvedQuestionToday: true },
+            { new: true }
+        );
 
         return res.status(200).json({
             success: true,
@@ -152,7 +158,7 @@ exports.eraseDone = async (req, res)=>{
             }
         })
         .then(updatedUser => {
-            console.log(updatedUser);
+            (updatedUser);
         })
         .catch(err => {
             console.error(err);
@@ -227,7 +233,7 @@ exports.getDoneTopicQuestions = async (req, res)=>{
         const userId = await User.findById(req.user.id);
         const topicID = req.params.id;
 
-        // console.log("Printing request params",topicID)
+        // ("Printing request params",topicID)
 
         const user = await User.findOne({ _id: userId })
                             .exec()

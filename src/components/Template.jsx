@@ -4,20 +4,24 @@ import SignupForm from './SignupForm'
 import LoginForm from './LoginForm'
 import {FcGoogle} from "react-icons/fc"
 import { Header } from './Header'
+import { Foooter } from './Foooter'
+import { useSelector } from 'react-redux'
 
 
 const Template = ({title, desc1, desc2, image, formtype}) => {
 
+  const {darkMode} = useSelector((state) => state.auth);
+
     // console.log("ye rha mera form type");
     // console.log(formtype)
   return (
-    <div>
+    <div className={`${darkMode && "dark"}`}>
         <Header/>
     <div className='flex items-center justify-evenly w-11/12 max-w-[1160px] pt-24 mx-auto  gap-x-36 gap-y-0'>
 
         <div className='w-11/12 max-w-[450px]' >
             <h1
-            className='text-richblack-5 font-semibold text-[1.875rem] leading-[2.375rem]' 
+            className='text-richblack-5 font-semibold text-[1.875rem] leading-[2.375rem] dark:text-white' 
             >
                 {title}
             </h1>
@@ -56,25 +60,8 @@ const Template = ({title, desc1, desc2, image, formtype}) => {
                     /> 
         </div>
 
-         
-
-        {/* <div className='relative w-11/12 max-w-[450px] '>
-            <img src={frameImage}
-                alt="Pattern"
-                width={558}
-                height={504}
-                loading="lazy"/>
-
-            <img src={image}
-                alt="Students"
-                width={558}
-                height={490}
-                loading="lazy"
-                className='absolute -top-4 right-4'
-                />    
-        </div> */}
-
     </div>
+    <Foooter />
     </div>
   )
 }

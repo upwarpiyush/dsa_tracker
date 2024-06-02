@@ -13,3 +13,7 @@
     background-size: 100% auto;
     background-repeat: no-repeat;
 }
+
+*{
+    @apply transition-colors duration-200
+}

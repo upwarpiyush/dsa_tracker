@@ -4,17 +4,19 @@ import topic_image from "../assets/topicwise_background.svg"
 import tracker_image from "../assets/percentage_background.svg"
 import {FaArrowRightLong} from "react-icons/fa6"
 import { useNavigate } from 'react-router-dom'
-import { Footer } from '../components/Footer'
 import { Header } from '../components/Header'
 import { Navigate } from 'react-router-dom'
 import { useSelector } from 'react-redux/es/hooks/useSelector'
+import { Foooter } from '../components/Foooter'
 
 
 export const Auth = () => {
   const navigate = useNavigate();
+  const {darkMode} = useSelector((state) => state.auth);
   return (
-    <div className=''>
+    <div className={`${darkMode && "dark"}`}>
       <Header/>
+      <div className='dark:bg-zinc-900'>
         <div className=' flex flex-col items-center justify-center bg-[#001e2b] rounded-b-[70px] py-[18rem] gap-5'> 
           <div className='text-[5rem] mx-auto w-[70%] text-center text-white'>
             <span className='text-orange-400'>DSALog.</span> DSA Mastery Unveiled
@@ -22,7 +24,10 @@ export const Auth = () => {
 
           <div className='w-1/2 text-gray-300 text-xl text-center'>Discover a powerful tool for students and mentors alike! Our interactive platform empowers you to effortlessly track your progress and take control of your Data Structures and Algorithms (DSA) journey. Gain key insights, mark questions as completed, and navigate your path to success. Seamlessly manage topics and questions with ease. Take your DSA learning to the next level with our user-friendly, all-in-one solution. Join us today and unlock the true potential of your DSA journey.</div>
 
-          <div className='text-white text-2xl flex flex-row items-center justify-between gap-2 align-middle relative cursor-pointer hover:text-orange-400' onClick={()=>{navigate("/login")}}>Get started <FaArrowRightLong style={{position:'absolute', top:'6px', right:'-40px'}} color='orange'/> </div>
+          <div className='flex flex-row items-center justify-between gap-2 cursor-pointer text-white hover:text-orange-500 hover:fill-orange-500'>
+           <div className=' text-2xl' onClick={()=>{navigate("/login")}}>Get started  </div>
+           <FaArrowRightLong className='text-xl mt-1'/>
+          </div>
 
 
           <div className='flex flex-row text-white w-[80%] pt-20 justify-center items-center gap-32'>
@@ -40,10 +45,11 @@ export const Auth = () => {
             </div>
           </div>
         </div>
+        </div>
 
 
-        <div className="homepage_bg"> 
-          <div className='w-[80%] mx-auto mt-20'>
+        <div className="homepage_bg dark:bg-zinc-900"> 
+          <div className='w-[80%] mx-auto pt-20'>
             <div className='flex flex-row my-20 justify-between pt-10'>
               <div className='flex flex-col items-center justify-center w-[38%]'>
                 <div className='text-5xl'>Effortless access to selected Questions</div>
@@ -65,7 +71,7 @@ export const Auth = () => {
               <img src={topic_image} className='w-[50%]'></img>
             </div>
           </div>
-          <Footer/>
+          <Foooter />
         </div>
         
       </div>

@@ -4,6 +4,7 @@ const initialState = {
   signupData: null,
   loading: false,
   token: localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : null,
+  darkMode: false,
 };
 
 const authSlice = createSlice({
@@ -19,9 +20,12 @@ const authSlice = createSlice({
     setToken(state, value) {
       state.token = value.payload;
     },
+    setDarkMode(state, value){
+      state.darkMode = value.payload;
+    },
   },
 });
 
-export const { setSignupData, setLoading, setToken } = authSlice.actions;
+export const { setSignupData, setLoading, setToken, setDarkMode } = authSlice.actions;
 
 export default authSlice.reducer;

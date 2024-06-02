@@ -3,6 +3,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import {toast} from "react-hot-toast"
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { sendOtp } from "../services/operations/authAPI"
 import { setSignupData } from "../slices/authSlice"
@@ -11,6 +12,8 @@ import { setSignupData } from "../slices/authSlice"
 const SignupForm = ({setIsLoggedIn}) => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
+
+    const {darkMode} = useSelector((state) => state.auth);
 
     const [formData, setFormData] = useState({
         firstName:"",
@@ -73,13 +76,13 @@ const SignupForm = ({setIsLoggedIn}) => {
 
 
   return (
-    <div>
+    <div className={`${darkMode && "dark"} mb-10`}>
 
         <form onSubmit={submitHandler} >
         {/* first name and lastName */}
             <div className='flex gap-x-4 mt-[20px]'>
                     <label className='w-full'>
-                        <p className='text-[0.875rem] text-richblack-5 mb-1 leading-[1.375rem]'>First Name<sup className='text-red-500'>*</sup></p>
+                        <p className='text-[0.875rem] text-richblack-5 mb-1 leading-[1.375rem] dark:text-white'>First Name<sup className='text-red-500'>*</sup></p>
                         <input
                             required
                             type="text"
@@ -92,7 +95,7 @@ const SignupForm = ({setIsLoggedIn}) => {
                     </label>
 
                     <label className='w-full'>
-                        <p className='text-[0.875rem] text-richblack-5 mb-1 leading-[1.375rem]'>Last Name<sup className='text-red-500'>*</sup></p>
+                        <p className='text-[0.875rem] text-richblack-5 mb-1 leading-[1.375rem] dark:text-white'>Last Name<sup className='text-red-500'>*</sup></p>
                         <input
                             required
                             type="text"
@@ -107,7 +110,7 @@ const SignupForm = ({setIsLoggedIn}) => {
             {/* email Add */}
             <div className='mt-[20px]'>
             <label className='w-full mt-[20px]'>
-                    <p className='text-[0.875rem] text-richblack-5 mb-1 leading-[1.375rem]'>Email Address<sup className='text-red-500'>*</sup></p>
+                    <p className='text-[0.875rem] text-richblack-5 mb-1 leading-[1.375rem] dark:text-white'>Email Address<sup className='text-red-500'>*</sup></p>
                     <input
                         required
                         type="email"
@@ -124,7 +127,7 @@ const SignupForm = ({setIsLoggedIn}) => {
             {/* createPassword and Confirm Password */}
             <div className='w-full flex gap-x-4 mt-[20px]'>
                 <label className='w-full relative'>
-                    <p className='text-[0.875rem] text-richblack-5 mb-1 leading-[1.375rem]'>Create Password<sup className='text-red-500'>*</sup></p>
+                    <p className='text-[0.875rem] text-richblack-5 mb-1 leading-[1.375rem] dark:text-white'>Create Password<sup className='text-red-500'>*</sup></p>
                     <input
                         required
                         type= {showPassword ? ("text") : ("password")}
@@ -146,7 +149,7 @@ const SignupForm = ({setIsLoggedIn}) => {
                 </label>
 
                 <label className='w-full relative'>
-                    <p className='text-[0.875rem] text-richblack-5 mb-1 leading-[1.375rem]'>Confirm Password<sup className='text-red-500'>*</sup></p>
+                    <p className='text-[0.875rem] text-richblack-5 mb-1 leading-[1.375rem] dark:text-white'>Confirm Password<sup className='text-red-500'>*</sup></p>
                     <input
                         required
                         type= {showConfirmPassword ? ("text") : ("password")}

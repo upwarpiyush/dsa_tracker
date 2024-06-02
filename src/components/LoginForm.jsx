@@ -3,6 +3,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-hot-toast';
+import { useSelector } from 'react-redux';
 
 import { login } from "../services/operations/authAPI"
 
@@ -19,6 +20,8 @@ const LoginForm = () => {
     const { email, password } = formData
 
     const [showPassword, setShowPassword] = useState(false)
+
+    const {darkMode} = useSelector((state) => state.auth);
 
     function changeHandler(event) {
 
@@ -38,12 +41,13 @@ const LoginForm = () => {
     }
 
   return (
+    <div className={`${darkMode && "dark"}`}>
     <form
       onSubmit={submitHandler}
       className="mt-6 flex w-full flex-col gap-y-4"
     >
       <label className="w-full">
-        <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
+        <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5 dark:text-white">
           Email Address <sup className="text-red-500">*</sup>
         </p>
         <input
@@ -52,7 +56,7 @@ const LoginForm = () => {
           name="email"
           value={email}
           onChange={changeHandler}
-          placeholder="Enter email address"
+          placeholder="dsatracker00@gmail.com"
           style={{
             boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
           }}
@@ -60,7 +64,7 @@ const LoginForm = () => {
         />
       </label>
       <label className="relative">
-        <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
+        <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5 dark:text-white">
           Password <sup className="text-red-500">*</sup>
         </p>
         <input
@@ -69,7 +73,7 @@ const LoginForm = () => {
           name="password"
           value={password}
           onChange={changeHandler}
-          placeholder="Enter Password"
+          placeholder="1234"
           style={{
             boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
           }}
@@ -98,6 +102,7 @@ const LoginForm = () => {
         Sign In
       </button>
     </form>
+    </div>
   )
 }
 
