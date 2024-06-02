@@ -49,6 +49,7 @@ export const Landing = () => {
 
             if (newPermission === "granted") {
               // Permission granted, subscribe to push notifications
+              console.log("vapid key......",process.env.VAPID_PUBLIC_KEY)
               const applicationServerKey = urlBase64ToUint8Array(process.env.VAPID_PUBLIC_KEY);
               const subscription = await register.pushManager.subscribe({
                 userVisibleOnly: true,
