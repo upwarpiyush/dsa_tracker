@@ -15,7 +15,7 @@ DSA-Tracker is designed to help users practice Data Structures and Algorithms (D
 - **DSA Questions:** Access a comprehensive list of DSA questions to practice and track progress.
 
 ## How To Use🖱
-1. Visit [DSA-Tracker](https://dsa-tracker.com).
+1. Visit [DSA-Tracker](https://dsatracker-frontend.vercel.app/).
 2. Login using the following credentials:
    - **Email:** dsatracker00@gmail.com
    - **Password:** 1234
