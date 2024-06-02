@@ -30,10 +30,13 @@ export const Landing = () => {
 
   const registerServiceWorkerAndSubscribe = async () => {
       try {
+        console.log("Inside function......1");
         // console.log(token);
         if ("serviceWorker" in navigator) {
           // Register the service worker
           const register = await navigator.serviceWorker.register("/sw.js");
+
+          console.log("Inside function......2");
 
           // Check current notification permission
           const permission = Notification.permission;
@@ -46,18 +49,22 @@ export const Landing = () => {
 
             if (newPermission === "granted") {
               // Permission granted, subscribe to push notifications
-              const applicationServerKey = urlBase64ToUint8Array(process.env.VAPID_PUBLIC_KEY);
+              // const applicationServerKey = urlBase64ToUint8Array(process.env.VAPID_PUBLIC_KEY);
               const subscription = await register.pushManager.subscribe({
                 userVisibleOnly: true,
-                applicationServerKey
+                applicationServerKey: process.env.VAPID_PUBLIC_KEY,
               });
+
+            console.log("Inside function......3");
 
             const res = await apiConnector(
               "POST", 
               `${process.env.REACT_APP_BASE_URL}/subscribe`, 
               {uid:user._id, subscription},
-              {Authorisation: `Bearer ${token}`},
+              {"content-type": "application/json"},
             );
+
+            console.log("Inside function......4");
 
               if (!res.ok) {
                 throw new Error(`Subscription failed: ${res.statusText}`);
@@ -81,6 +88,9 @@ export const Landing = () => {
     };
 
     // const urlBase64ToUint8Array = (base64String) => {
+    //   if (!base64String) {
+    //     throw new Error("VAPID public key is not defined");
+    //   }
     //   const padding = '='.repeat((4 - base64String.length % 4) % 4);
     //   const base64 = (base64String + padding).replace(/\-/g, '+').replace(/_/g, '/');
     //   const rawData = window.atob(base64);
@@ -91,21 +101,6 @@ export const Landing = () => {
     //   }
     //   return outputArray;
     // };
-
-    const urlBase64ToUint8Array = (base64String) => {
-      if (!base64String) {
-        throw new Error("VAPID public key is not defined");
-      }
-      const padding = '='.repeat((4 - base64String.length % 4) % 4);
-      const base64 = (base64String + padding).replace(/\-/g, '+').replace(/_/g, '/');
-      const rawData = window.atob(base64);
-      const outputArray = new Uint8Array(rawData.length);
-
-      for (let i = 0; i < rawData.length; ++i) {
-        outputArray[i] = rawData.charCodeAt(i);
-      }
-      return outputArray;
-    };
 
   const getTopics = async() => {
       try{
