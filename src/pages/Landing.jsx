@@ -20,6 +20,8 @@ export const Landing = () => {
   const [totalQuestions, setTotalQuestions] = useState(0);
   const [totalDoneQuestions, setTotalDoneQuestions] = useState(0);
 
+  const [notificationPermission, setNotificationPermission] = useState('')
+
   const {token}  = useSelector((state) => state.auth);
   const {user} = useSelector( (state) => state.profile );
 
@@ -34,7 +36,9 @@ export const Landing = () => {
           const register = await navigator.serviceWorker.register("/sw.js");
 
           // Check current notification permission
-          const permission = await Notification.permission;
+          const permission = Notification.permission;
+
+          setNotificationPermission(permission);
 
           if (permission === "default") {
             // Request permission for push notifications
@@ -42,9 +46,10 @@ export const Landing = () => {
 
             if (newPermission === "granted") {
               // Permission granted, subscribe to push notifications
+              const applicationServerKey = urlBase64ToUint8Array(process.env.REACT_APP_VAPID_PUBLIC_KEY);
               const subscription = await register.pushManager.subscribe({
                 userVisibleOnly: true,
-                applicationServerKey: process.env.VAPID_PUBLIC_KEY
+                applicationServerKey
               });
 
             const res = await apiConnector(
@@ -73,6 +78,18 @@ export const Landing = () => {
       } catch (error) {
         console.error("Error during service worker registration or push subscription:", error);
       }
+    };
+
+    const urlBase64ToUint8Array = (base64String) => {
+      const padding = '='.repeat((4 - base64String.length % 4) % 4);
+      const base64 = (base64String + padding).replace(/\-/g, '+').replace(/_/g, '/');
+      const rawData = window.atob(base64);
+      const outputArray = new Uint8Array(rawData.length);
+
+      for (let i = 0; i < rawData.length; ++i) {
+        outputArray[i] = rawData.charCodeAt(i);
+      }
+      return outputArray;
     };
 
   const getTopics = async() => {
@@ -107,8 +124,6 @@ export const Landing = () => {
   useEffect(()=>{
     fun();
   },[done, topics])
-
-  const [notificationPermission, setNotificationPermission] = useState('')
 
   useEffect(()=>{
     const noti_permission = Notification.permission;
@@ -195,10 +210,10 @@ export const Landing = () => {
 
         {/* Topic Cards */}
         <div className='pt-28'>
-          { notificationPermission !== "granted" ? (
+          { notificationPermission === "default" ? (
           <div className={`flex flex-row gap-5 justify-center items-center bg-gradient-to-r from-orange-500 to-red-400 animate-gradient w-4/5 mx-auto rounded-2xl `}>
             <div>We'd like to send you notifications. Please click the bell icon to grant permission.</div>
-            <div className='animate-pulse focus:animate-none hover:animate-none inline-flex bg-rose-60 py-2 rounded-full tracking-wide text-white' onClick={registerServiceWorkerAndSubscribe}>
+            <div className='animate-pulse focus:animate-none hover:animate-none inline-flex bg-rose-60 py-2 rounded-full tracking-wide text-white cursor-pointer' onClick={registerServiceWorkerAndSubscribe}>
                 <img src={notification_logo} alt="" className='w-8' title='turn on notification'/>
             </div>
           </div>) : (null)
