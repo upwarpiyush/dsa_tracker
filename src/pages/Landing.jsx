@@ -30,13 +30,9 @@ export const Landing = () => {
 
   const registerServiceWorkerAndSubscribe = async () => {
       try {
-        console.log("Inside function......1");
-        // console.log(token);
         if ("serviceWorker" in navigator) {
           // Register the service worker
           const register = await navigator.serviceWorker.register("/sw.js");
-
-          console.log("Inside function......2");
 
           // Check current notification permission
           const permission = Notification.permission;
@@ -48,15 +44,11 @@ export const Landing = () => {
             const newPermission = await Notification.requestPermission();
 
             if (newPermission === "granted") {
-              // Permission granted, subscribe to push notifications
-              console.log("vapid key......",process.env.VAPID_PUBLIC_KEY)
-              const applicationServerKey = urlBase64ToUint8Array(process.env.VAPID_PUBLIC_KEY);
+              const applicationServerKey = urlBase64ToUint8Array(process.env.REACT_APP_VAPID_PUBLIC_KEY);
               const subscription = await register.pushManager.subscribe({
                 userVisibleOnly: true,
                 applicationServerKey,
               });
-
-            console.log("Inside function......3");
 
             const res = await apiConnector(
               "POST", 
@@ -64,8 +56,6 @@ export const Landing = () => {
               {uid:user._id, subscription},
               {"content-type": "application/json"},
             );
-
-            console.log("Inside function......4");
 
               if (!res.ok) {
                 throw new Error(`Subscription failed: ${res.statusText}`);
@@ -130,7 +120,6 @@ export const Landing = () => {
   useEffect(()=> {
     getTopics();
     getDoneTopics();
-    
   },[]);
 
   useEffect(()=>{
