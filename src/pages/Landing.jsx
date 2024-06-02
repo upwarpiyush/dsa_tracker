@@ -198,7 +198,7 @@ export const Landing = () => {
           { notificationPermission !== "granted" ? (
           <div className={`flex flex-row gap-5 justify-center items-center bg-gradient-to-r from-orange-500 to-red-400 animate-gradient w-4/5 mx-auto rounded-2xl `}>
             <div>We'd like to send you notifications. Please click the bell icon to grant permission.</div>
-            <div className='animate-pulse focus:animate-none hover:animate-none inline-flex bg-rose-60 py-2 rounded-full tracking-wide text-white'>
+            <div className='animate-pulse focus:animate-none hover:animate-none inline-flex bg-rose-60 py-2 rounded-full tracking-wide text-white' onClick={registerServiceWorkerAndSubscribe}>
                 <img src={notification_logo} alt="" className='w-8' title='turn on notification'/>
             </div>
           </div>) : (null)
